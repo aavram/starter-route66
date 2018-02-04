@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends Application
+class Juliet extends CI_Controller
 {
 
 	function __construct()
@@ -16,14 +16,12 @@ class Welcome extends Application
 	{
 		// this is the view we want shown
 		$this->data['pagebody'] = 'homepage';
-
-		// build the list of authors, to pass on to our view
-		$source = $this->quotes->all();
-
-		// pass on the data to present, as the "authors" view parameter
-		$this->data['authors'] = $source;
+		
+		$record = $this->quotes->get(1);
+		header("Content-type: application/json");
+		echo json_encode($record);
 
 		$this->render();
 	}
-	
+
 }
